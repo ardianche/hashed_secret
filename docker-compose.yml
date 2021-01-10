@@ -26,26 +26,20 @@ services:
   db:
     image: mongo:4.1.8-xenial
     container_name: db
-    restart: unless-stopped
+    restart: always
     env_file: .env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
       - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+      - MONGO_INITDB_DATABASE=secretHash
     volumes:
       - dbdata:/data/db
     networks:
       - app-network
-  vue-app:
-    build:
-      context: ./client
-    command: npm run serve -- --port 3000
     ports:
-      - "3000:3000"
-    container_name: vue-ui
-    volumes:
-       - ./client:/usr/src/app/client
-       - /usr/src/app/client/node_modules
+      - 27018:27017
 
+      
 networks:
   app-network:
     driver: bridge

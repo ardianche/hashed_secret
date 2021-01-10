@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "nodejs image demo",
+  "description": "Hashed Secret",
   "author": "Ardian Ibrahimi",
   "license": "MIT",
   "main": "app.js",
@@ -9,8 +9,9 @@
     "type": "git",
     "url": "https://github.com/ardianche/hashed_secret.git"
   },
-  "scripts":{
-    "start" : "nodemon app.js"
+  "scripts": {
+    "start": "npm run test && nodemon app.js",
+    "test": "jest"
   },
   "keywords": [
     "nodejs",
@@ -18,11 +19,15 @@
     "express"
   ],
   "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.10"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "jest": "^26.6.3",
+    "supertest": "^6.0.1"
   }
 }
