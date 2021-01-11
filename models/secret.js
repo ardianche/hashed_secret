@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Secret = new Schema ({
+        url : {type: String,required:false,default:''},
         hash: { type: String, required: false, default:'CanusLupus-FantasticMrFox'},
         secretText: { type: String, required: true},
         createdAt: {type: Date, required:false},

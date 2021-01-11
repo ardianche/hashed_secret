@@ -15,6 +15,9 @@ app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/secret', secret);
 
-app.listen(port, function () {
+server = app.listen(port, function () {
   console.log('Example app listening on port 8080!')
-})
+});
+
+//Export app instance for endpoint testing
+module.exports = server;
