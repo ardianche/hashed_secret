@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import Vue from 'vue';
+
 import axios from 'axios';
 
 export default createStore({
@@ -12,15 +12,24 @@ export default createStore({
     }
   },
   actions: {
-    fetchSecret(param = ''){
-      axios.get('/')
+    fetchSecret({commit},param = ''){
+      axios.get(`/${param}`)
         .then((res) => {
           console.log('RES: ',res);
           this.commit('SET_SECRET_LIST',res.data);
         });
     },
-    createSecret(payload){
-
+    createSecret({commit},payload){
+      return new Promise((resolve,reject) => {
+        axios.post('/',payload)
+          .then((res) => {
+            commit('SET_SECRET_LIST',res.data);
+            resolve(res.data);
+          })
+          .catch(err => {
+            reject(err);
+          });
+      });
     }
   },
   modules: {
