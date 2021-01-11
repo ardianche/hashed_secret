@@ -87,6 +87,12 @@ exports.getSecretFromUrl = function(url,res) {
     try {
         Secret.find({
             "url": url,
+            "remainingViews":{
+                $gt:0
+            },
+            "expiresAt":{
+                $gt: new Date()
+            }
         }, function (err, doc) {
             if (err) res.send(500, err);
             let secret = doc;

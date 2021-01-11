@@ -37,15 +37,15 @@ describe('GET Endpoints',()=>{
 
 describe('POST Endpoints', () => {
 
-    // it('should not create document', async done => {
-    //     let response = await request.post('/api/secret').send({
-    //             "secret": null,
-    //             "expireAfterViews": 1,
-    //             "expireAfter": 60            
-    //     });
-    //     expect(response.status).toBe(400);
-    //     done();
-    // });
+    it('should not create document', async done => {
+        let response = await request.post('/api/secret').send({
+                "secret": null,
+                "expireAfterViews": 1,
+                "expireAfter": 60            
+        });
+        expect(response.status).toBe(500);
+        done();
+    });
 
     it('should create a document', async done => {
         let response = await request.post('/api/secret').send({
